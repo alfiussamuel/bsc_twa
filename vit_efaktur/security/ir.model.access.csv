@@ -1,0 +1,9 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_vit_efaktur,access_vit_efaktur,model_vit_efaktur,,1,0,0,0
+access_vit_efaktur_admin,access_vit_efaktur_admin,model_vit_efaktur,account.group_account_manager,1,1,1,1
+access_vit_assign_wizard_accounting,access_vit_assign_wizard_accounting,model_vit_assign_wizard,account.group_account_manager,1,1,1,1
+access_vit_efaktur_auto_accounting,access_vit_efaktur_auto_accounting,model_vit_efaktur_auto,account.group_account_manager,1,1,1,1
+access_vit_generate_efaktur_accounting,access_vit_generate_efaktur_accounting,model_vit_generate_efaktur,account.group_account_manager,1,1,1,1
+access_vit_efaktur_pk_accounting,access_vit_efaktur_pk_accounting,model_vit_efaktur_pk,account.group_account_manager,1,1,1,1
+access_vit_efaktur_pm_accounting,access_vit_efaktur_pm_accounting,model_vit_efaktur_pm,account.group_account_manager,1,1,1,1
+access_vit_efaktur_product_accounting,access_vit_efaktur_product_accounting,model_vit_efaktur_product,account.group_account_manager,1,1,1,1
