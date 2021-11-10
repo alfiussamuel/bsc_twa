@@ -6,11 +6,12 @@
     'author': 'BSC',
 
     # any module necessary for this one to work correctly
-    'depends': ['stock_landed_costs'],
+    'depends': ['stock_landed_costs','product'],
 
     # always loaded
     'data': [
                 'views/landedcost_view.xml',
+                'views/product_view.xml'
             ],
 
 }
