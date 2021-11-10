@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="seq_po_local" model="ir.sequence">
+            <field name="name">Purchase Order Local</field>
+            <field name="code">purchase.order.local</field>
+            <field name="prefix">PO/LOC/%(y)s/%(month)s/</field>
+            <field name="padding">5</field>
+        </record>
+
+        <record id="seq_po_import" model="ir.sequence">
+            <field name="name">Purchase Order Import</field>
+            <field name="code">purchase.order.import</field>
+            <field name="prefix">PO/IMP/%(y)s/%(month)s/</field>
+            <field name="padding">5</field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

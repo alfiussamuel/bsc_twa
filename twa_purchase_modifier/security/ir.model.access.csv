@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_twa_purchase_modifier_twa_purchase_modifier,twa_purchase_modifier.twa_purchase_modifier,model_twa_purchase_modifier_twa_purchase_modifier,base.group_user,1,1,1,1
