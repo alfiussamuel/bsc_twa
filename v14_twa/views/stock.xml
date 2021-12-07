@@ -1,0 +1,16 @@
+<odoo>
+  <data>
+
+        <record id="stock_picking_extend_ihu" model="ir.ui.view">
+            <field name="name">Stock Picking</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <field name="location_id" position="after">
+                    <field name="company_selection"/>
+                </field>
+            </field>
+        </record>
+
+  </data>
+</odoo>
