@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_saleorder_document">
+    <t t-call="web.basic_layout">
+        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+        <t t-if="not company">
+            <!-- Multicompany -->
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+        <div class="header">
+            <div class="row">
+                <div class="col-3">
+                    <img t-if="company.logo_so" t-att-src="image_data_uri(company.logo_so)" style="max-width: 200px;" class="img-fluid float-left" alt="Logo"/>
+                </div>
+                <div class="col-9">
+                    <table class="table table-borderless" width="100%">
+                        <tr >
+                            <td colspan="3" style="padding:0px;"><h1><span t-esc="company.name" style="font-weight:bold"/></h1></td>
+                        </tr>
+                        <tr >
+                            <td style="padding:0px;font-size:11px" width="33%">
+                                <span style="font-weight:bold">Main Office:</span>
+                                <br/>Jl. Lio Baru No. 37/63. Karang Anyar <br/>
+                                Negiasari 15121 - Tangerang <br/>
+                                Telp : (021) 552 7577<br/>
+                                Fax : (021) 552 7507<br/>
+                                Email : twa@cibn.net.id
+                            </td>
+                            <td style="padding:0px;font-size:11px" width="33%">
+                                <span style="font-weight:bold">Retail Office:</span>
+                                <br/>Lindeteves Trade Center Lt.2, <br/>
+                                Blok C43 No.27-28 <br/>
+                                Jakarta 11580, Indonesia<br/>
+                                Tel : (021) 626 5055, 6220 0775<br/>
+                                Fax : (021) 626 5057
+                            </td>
+                            <td style="padding:0px;font-size:11px" width="33%">
+                                <span style="font-weight:bold">Branch Office:</span>
+                                <br/>Jl. Bubutan Pertokoan 21 Blok B No. 5 <br/>
+                                Surabaya 60174, Indonesia <br/>
+                                Tel : (031) 547 4978, 548 1566<br/>
+                                Fax : (031) 548 6092
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="page">
+            <div class="row">
+                <div class="col-6">
+                    <br/>
+                    To: <br/>
+                    <t t-if="not doc.partner_id.parent_id">
+                        <span style="font-weight:bold" t-esc="doc.partner_id.name"/>
+                    </t>
+                    <t t-else="">
+                        <span style="font-weight:bold" t-esc="doc.partner_id.parent_id.name"/>
+                    </t>
+                    <br/>
+                    <span t-esc="doc.partner_id.street"/><br/>
+                    Telp : <span t-esc="doc.partner_id.phone"/><br/>
+                    Fax  : <span t-esc="doc.partner_id.fax"/><br/>
+                    <span style="font-weight:bold">Attn. Mr./Mrs. <span t-esc="doc.partner_id.name"/></span>
+                </div>
+                <div class="col-6">
+                    <table class="table table-borderless" width="100%">
+                        <tr>
+                            <td style="padding:0px" align="right" colspan="3"><h1>Quotation</h1></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0px" align="right" width="55%">Our Ref.</td>
+                            <td style="padding:0px" width="5%">:</td>
+                            <td style="padding:0px" align="right" width="45%"><span t-esc="doc.name"/></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0px"  align="right" width="55%">Your Ref.</td>
+                            <td style="padding:0px" width="5%">:</td>
+                            <td style="padding:0px" align="right" width="45%"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0px" align="right" width="55%">Date</td>
+                            <td style="padding:0px" width="5%">:</td>
+                            <td style="padding:0px" align="right" width="45%"><span t-esc="doc.date_order.strftime('%d %B %Y')"/></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0px" align="right" width="55%">Page</td>
+                            <td style="padding:0px" width="5%">:</td>
+                            <td style="padding:0px" align="right" width="45%">1 of 1</td>
+                        </tr>
+                    
+                    </table>
+                </div>
+            </div>
+            <div>
+                <br/>
+                <!-- Dear Mr./Mrs.,<br/><br/>
+                We thank you for your inquiry and we are pleased to offer you without engagement: -->
+                <span t-field="doc.opening_report"/>
+                <br/>
+
+                    <table class="table table-sm table-borderless" width="100%">
+                        <thead class="font-weight-bold">
+                            <tr>
+                                <th style="border-top: 1px solid black;border-bottom: 1px solid black" class="text-center">Item</th>
+                                <th style="border-top: 1px solid black;border-bottom: 1px solid black" class="text-center">Description</th>
+                                <th style="border-top: 1px solid black;border-bottom: 1px solid black" class="text-center" colspan="2">Quantity</th>
+                                <th style="border-top: 1px solid black;border-bottom: 1px solid black" class="text-right">Unit Price IDR</th>
+                                <th style="border-top: 1px solid black;border-bottom: 1px solid black" class="text-right">Total Price IDR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="seq" t-value="1"/>
+                            <t t-foreach="doc.order_line" t-as="line">
+                                <tr>
+                                    <td style="border-top: 1px solid black;border-bottom: 1px solid black" class="text-center"><span t-esc="seq"/></td>
+                                    <td style="border-top: 1px solid black;border-bottom: 1px solid black"><span t-esc="line.product_id.name"/></td>
+                                    <td style="border-top: 1px solid black;border-bottom: 1px solid black" class="text-right"><span t-esc="'{0:,.2f}'.format(line.product_uom_qty)"/></td>
+                                    <td style="border-top: 1px solid black;border-bottom: 1px solid black"><span t-esc="line.product_uom.name"/></td>
+                                    <td style="border-top: 1px solid black;border-bottom: 1px solid black" class="text-right"><span t-esc="'{0:,.2f}'.format(line.price_unit)"/></td>
+                                    <td style="border-top: 1px solid black;border-bottom: 1px solid black" class="text-right"><span t-esc="'{0:,.2f}'.format(line.price_subtotal)"/></td>
+                                </tr>
+                                <t t-set="seq" t-value="seq+1"/>
+                            </t>
+                        </tbody>
+                    </table>
+            </div>
+            <div>
+                <span style="font-weight:bold">Commercial Condition:</span>
+                <br/>
+                <span t-field="doc.term_condition_report"/>
+                <!-- Price : <b>Nett</b>, Exclude PPN, Franco Purwakarta<br/>
+                Delivery : Indent 8-10 Weeks<br/>
+                Payment : 4 Weeks after delivery<br/>
+                Validity : 2 weeks<br/> -->
+                <br/><br/>
+                <span t-field="doc.closing_report"/>
+                <!-- If you have any further questions, please do not hestitate to contact us again. We hope you will make
+                use of this advantageous offer and we look forward to receiving your firm order soon. -->
+
+            </div>
+            <br/>
+            <div>
+                Yours faithfully,
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                Erni Syarif<br/>
+                Cc.Budiyanto A.Gani
+
+            </div>
+
+            
+
+            
+        </div>
+    </t>
+</template>
+
+
+<template id="report_saleorder">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="sale_order_report.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+        </t>
+    </t>
+</template>
+
+<record id="action_report_saleorder" model="ir.actions.report">
+    <field name="name">Quotation TWA</field>
+    <field name="model">sale.order</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">sale_order_report.report_saleorder</field>
+    <field name="report_file">sale_order_report.report_saleorder</field>
+    <field name="print_report_name">(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)</field>
+    <field name="binding_model_id" ref="sale.model_sale_order"/>
+    <field name="binding_type">report</field>
+</record>
+
+</odoo>
