@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_company_form">
+            <field name="name">res.company.inherit.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='general_info']" position="after">
+                    <page string="Report Quotation" name="quotation">
+                        <group>
+                            <field name="logo_so" class="oe_avatar" widget="image"/>
+                            <field name="opening_report"/>
+                            <field name="term_condition_report"/>
+                            <field name="closing_report"/>
+                        </group>
+                    </page>
+                </xpath>
+                
+            </field>
+        </record>
+    </data>
+</odoo>
