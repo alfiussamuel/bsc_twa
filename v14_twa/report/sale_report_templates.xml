@@ -3,8 +3,8 @@
     <template
         id="report_saleorder_document_without_price"
         inherit_id="sale.report_saleorder_document"
-        primary="True">
-        
+        primary="True"
+    >
         <xpath expr="//th[@name='th_priceunit']" position="replace" />
         <xpath expr="//th[@name='th_discount']" position="replace" />
         <xpath expr="//th[@name='th_taxes']" position="replace" />
