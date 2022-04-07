@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_efaktur_twa">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="row">
+                    <table style="width: 100%;">
+                        <tbody>
+                            <tr>
+                                <td style="width: 30%;">
+                                    <img t-if="o.company_id" t-att-src="image_data_uri(o.company_id.logo)"
+                                        style="width:80%; text-align: center;" alt="signature" />
+                                </td>
+                                <td style="width: 40%;">
+                                    <h3><span t-field='o.company_id.name' /></h3>
+                                    <p><span t-field='o.company_id.street' /></p>
+                                </td>
+                                <td style="width: 30%;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h1 style='text-align: center'>FAKTUR PENJUALAN</h1>
+                    <table style="width: 100%;">
+                        <tbody>
+                            <tr>
+                                <td style="width: 50%;">
+                                    <table style="width: 100%;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="width: 28.9268%;">No. Faktur</td>
+                                                <td style="width: 2.6178%;">:</td>
+                                                <td style="width: 38.3458%;"><span t-field="o.name" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 28.9268%;">No. Surat Jalan</td>
+                                                <td style="width: 2.6178%;">:</td>
+                                                <td style="width: 38.3458%;">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 28.9268%;">No. PO Customer</td>
+                                                <td style="width: 2.6178%;">:</td>
+                                                <td style="width: 38.3458%;">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 28.9268%;">Salesman</td>
+                                                <td style="width: 2.6178%;">:</td>
+                                                <td style="width: 38.3458%;"><span t-field="o.invoice_user_id.name" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 28.9268%;">Kode Crc.</td>
+                                                <td style="width: 2.6178%;">:</td>
+                                                <td style="width: 38.3458%;"><span t-field="o.currency_id.name" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td style="width: 50%;">
+                                    <table style="width: 100%; margin-top: -35px;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="width: 28.9268%;">Tanggal</td>
+                                                <td style="width: 2.6178%;">:</td>
+                                                <td style="width: 38.3458%;"><span
+                                                        t-esc="o.invoice_date.strftime('%d %B %Y')" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <strong><span t-field='o.partner_id.name' /></strong>
+                                    <p><span t-field='o.partner_id.street' /></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <t t-set='no' t-value='1' />
+                    <table style="border-collapse: collapse; width: 100%; height: 32px;" border="1">
+                        <tbody>
+                            <tr style="height: 14px;">
+                                <td style="width: 6.08276%; height: 14px; text-align: center;font-weight: bold;">No.
+                                </td>
+                                <td style="width: 27.2506%; height: 14px; text-align: center;font-weight: bold;">
+                                    Keterangan</td>
+                                <td style="width: 16.6667%; height: 14px; text-align: center;font-weight: bold;">
+                                    Quantity</td>
+                                <td style="width: 16.6667%; height: 14px; text-align: center;font-weight: bold;">Harga
+                                    Satuan</td>
+                                <td style="width: 16.6667%; height: 14px; text-align: center;font-weight: bold;">Disc%
+                                </td>
+                                <td style="width: 16.6667%; height: 14px; text-align: center;font-weight: bold;">Jumlah
+                                </td>
+                            </tr>
+                            <tr style="height: 18px;" t-foreach="o.invoice_line_ids" t-as="l">
+                                <td style="width: 6.08276%; height: 18px;text-align: center;">
+                                    <span t-esc='no' />
+                                </td>
+                                <td style="width: 27.2506%; height: 18px;text-align: center;">
+                                    <span t-field='l.product_id.name' />
+                                </td>
+                                <td style="width: 16.6667%; height: 18px;text-align: center;">
+                                    <span t-field='l.quantity' />
+                                </td>
+                                <td style="width: 16.6667%; height: 18px;text-align: center;">
+                                    <span t-field='l.price_unit' />
+                                </td>
+                                <td style="width: 16.6667%; height: 18px;text-align: center;">
+                                    0
+                                </td>
+                                <td style="width: 16.6667%; height: 18px;text-align: center;">
+                                    <span t-field='l.price_subtotal' />
+                                </td>
+                                <t t-set='no' t-value='no+1' />
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="font-size: 12px; width: 100%; margin-top: 50px">
+                        <tbody>
+                            <tr>
+                                <td style="width: 70%;">
+                                    <strong>Terbilang :</strong>
+                                    <br />
+                                    <span t-field='o.amount_words' />
+                                    <br />
+                                    <br />
+                                    <strong>Catatan :</strong>
+                                    <br />
+                                    BANK: CIMB Niaga - Cab. Citra Garden 2 ACC:
+                                    <br />
+                                    800.131.41.5800 (Rp) A.N : PT. Trimitra Wisesa Abadi
+                                </td>
+                                <td style="width: 30%;">
+                                    <table style="table">
+                                        <tbody>
+                                            <tr>
+                                                <td style="width: 45.3771%;">Subtotal</td>
+                                                <td style="width: 3.04128%;">:</td>
+                                                <td style="width: 51.5815%;"><span t-field='o.amount_untaxed' /></td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td colspan='3'>
+                                                    <hr/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 45.3771%;">DPP</td>
+                                                <td style="width: 3.04128%;">:</td>
+                                                <td style="width: 51.5815%;"><span t-field='o.amount_untaxed' /></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 45.3771%;">PPN</td>
+                                                <td style="width: 3.04128%;">:</td>
+                                                <td style="width: 51.5815%;"><span t-field='o.amount_tax' /></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan='3'>
+                                                    <hr/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 45.3771%;">Grand Total</td>
+                                                <td style="width: 3.04128%;">:</td>
+                                                <td style="width: 51.5815%;"><span t-field='o.amount_total' /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+            </t>
+        </t>
+
+    </template>
+
+
+</odoo>
