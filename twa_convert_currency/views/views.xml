@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="twa_convert_currency.list">
+      <field name="name">twa_convert_currency list</field>
+      <field name="model">twa_convert_currency.twa_convert_currency</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="twa_convert_currency.action_window">
+      <field name="name">twa_convert_currency window</field>
+      <field name="res_model">twa_convert_currency.twa_convert_currency</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="twa_convert_currency.action_server">
+      <field name="name">twa_convert_currency server</field>
+      <field name="model_id" ref="model_twa_convert_currency_twa_convert_currency"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="twa_convert_currency" id="twa_convert_currency.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="twa_convert_currency.menu_1" parent="twa_convert_currency.menu_root"/>
+    <menuitem name="Menu 2" id="twa_convert_currency.menu_2" parent="twa_convert_currency.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="twa_convert_currency.menu_1_list" parent="twa_convert_currency.menu_1"
+              action="twa_convert_currency.action_window"/>
+    <menuitem name="Server to list" id="twa_convert_currency" parent="twa_convert_currency.menu_2"
+              action="twa_convert_currency.action_server"/>
+-->
+  </data>
+</odoo>
