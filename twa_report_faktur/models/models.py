@@ -4,6 +4,7 @@ from num2words import num2words
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
+    berita_acara = fields.Char('Berita Acara')
     amount_words = fields.Char(compute='_compute_amount_words', string='Amount Words')
     
     @api.depends('amount_total')
