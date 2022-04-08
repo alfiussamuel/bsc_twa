@@ -12,9 +12,11 @@
                                     <img t-if="o.company_id" t-att-src="image_data_uri(o.company_id.logo)"
                                         style="width:80%; text-align: center;" alt="signature" />
                                 </td>
-                                <td style="width: 40%;">
+                                <td style="width: 60%;">
                                     <h3><span t-field='o.company_id.name' /></h3>
-                                    <p><span t-field='o.company_id.street' /></p>
+                                    <p>LINDETEVES TRADE CENTER LT. 2 BLOK C43 NO. 27 - 28
+                                        <br />
+                                        JL. HAYAM WURUK RT. 001/006 JAKARTA BARAT</p>
                                 </td>
                                 <td style="width: 30%;"></td>
                             </tr>
@@ -48,16 +50,16 @@
                                                 <td style="width: 38.3458%;"><span t-field="o.invoice_user_id.name" />
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td style="width: 28.9268%;">Kode Crc.</td>
                                                 <td style="width: 2.6178%;">:</td>
                                                 <td style="width: 38.3458%;"><span t-field="o.currency_id.name" /></td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </td>
                                 <td style="width: 50%;">
-                                    <table style="width: 100%; margin-top: -35px;">
+                                    <table style="width: 100%; margin-top: -25px;">
                                         <tbody>
                                             <tr>
                                                 <td style="width: 28.9268%;">Tanggal</td>
@@ -135,11 +137,11 @@
                                                 <td style="width: 45.3771%;">Subtotal</td>
                                                 <td style="width: 3.04128%;">:</td>
                                                 <td style="width: 51.5815%;"><span t-field='o.amount_untaxed' /></td>
-                                                
+
                                             </tr>
                                             <tr>
                                                 <td colspan='3'>
-                                                    <hr/>
+                                                    <hr />
                                                 </td>
                                             </tr>
                                             <tr>
@@ -154,7 +156,7 @@
                                             </tr>
                                             <tr>
                                                 <td colspan='3'>
-                                                    <hr/>
+                                                    <hr />
                                                 </td>
                                             </tr>
                                             <tr>
@@ -168,7 +170,35 @@
                             </tr>
                         </tbody>
                     </table>
+                    <table style="width: 100%;">
+                        <tbody>
+                            <tr>
+                                <td style="width: 70%;">
+                                </td>
+                                <td style="width: 30%;">
+                                    <table style="margin-top: 50px; width: 100%; height: 145px;">
+                                        <tbody>
+                                            <tr style="height: 18px;">
+                                                <td style="width: 100%; height: 18px;">
+                                                    Jakarta, <span t-esc="o.invoice_date.strftime('%d %B %Y')" />
+                                                </td>
+                                            </tr>
+                                            <tr style="height: 109px;">
+                                                <td style="width: 100%; height: 109px;">
 
+                                                </td>
+                                            </tr>
+                                            <tr style="height: 18px;">
+                                                <td style="width: 100%; height: 18px;">
+                                                    <span t-field='o.partner_id.name' />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                 </div>
 
