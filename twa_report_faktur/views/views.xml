@@ -16,7 +16,7 @@
                                     <h3><span t-field='o.company_id.name' /></h3>
                                     <p>LINDETEVES TRADE CENTER LT. 2 BLOK C43 NO. 27 - 28
                                         <br />
-                                        JL. HAYAM WURUK RT. 001/006 JAKARTA BARAT</p>
+                                        JL. HAYAM WURUK NO. 127 RT. 001/006 JAKARTA BARAT</p>
                                 </td>
                                 <td style="width: 30%;"></td>
                             </tr>
@@ -190,7 +190,7 @@
                                             </tr>
                                             <tr style="height: 18px;">
                                                 <td style="width: 100%; height: 18px;">
-                                                    <span t-field='o.partner_id.name' />
+                                                    <span t-field='o.invoice_user_id.name' />
                                                 </td>
                                             </tr>
                                         </tbody>
