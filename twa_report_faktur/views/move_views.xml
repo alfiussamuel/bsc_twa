@@ -11,6 +11,9 @@
                 <xpath expr="//field[@name='payment_reference']" position="after">
                     <field name="berita_acara" attrs="{'readonly': [('state','!=','draft')]}"/>
                 </xpath>
+                <xpath expr="//field[@name='invoice_user_id']" position="before">
+                    <field name="signed_partner_id" />
+                </xpath>
             </field>
         </record>
     

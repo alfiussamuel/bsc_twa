@@ -6,7 +6,8 @@ class AccountMove(models.Model):
 
     berita_acara = fields.Char('Berita Acara')
     amount_words = fields.Char(compute='_compute_amount_words', string='Amount Words')
-    
+    signed_partner_id = fields.Many2one('res.partner', string='Signed By')
+
     @api.depends('amount_total')
     def _compute_amount_words(self):
         for rec in self:
