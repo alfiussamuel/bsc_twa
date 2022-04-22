@@ -126,9 +126,9 @@
                                     <br />
                                     <strong>Catatan :</strong>
                                     <br />
-                                    BANK: CIMB Niaga - Cab. Citra Garden 2 ACC:
+                                    BANK: <span t-field='o.payment_journal_id.bank_id.name'/>
                                     <br />
-                                    800.131.41.5800 (Rp) A.N : PT. Trimitra Wisesa Abadi
+                                    <span t-field='o.payment_journal_id.bank_account_id.acc_number'/> (Rp) A.N : <span t-field='o.payment_journal_id.bank_account_id.acc_holder_name'/>
                                 </td>
                                 <td style="width: 30%;">
                                     <table style="table">
