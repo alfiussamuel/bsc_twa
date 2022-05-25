@@ -12,6 +12,7 @@
                     <field name="berita_acara" attrs="{'readonly': [('state','!=','draft')]}"/>
                 </xpath>
                 <xpath expr="//field[@name='invoice_user_id']" position="before">
+                    <field name="ppn_msg" />
                     <field name="payment_journal_id" options="{'no_create': True, 'no_open': True}"/>
                     <field name="signed_partner_id" />
                 </xpath>

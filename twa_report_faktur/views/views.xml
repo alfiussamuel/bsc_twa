@@ -13,8 +13,9 @@
                                         style="width:80%; text-align: center;" alt="signature" />
                                 </td>
                                 <td style="width: 60%;">
-                                    <h3><span t-field='o.company_id.name' /></h3>
-                                    <p>LINDETEVES TRADE CENTER LT. 2 BLOK C43 NO. 27 - 28
+                                    <h1><span t-field='o.company_id.name' /></h1>
+                                    <p style='font-size: 12px; margin-top: -15px;'>LINDETEVES TRADE CENTER LT. 2 BLOK
+                                        C43 NO. 27 - 28
                                         <br />
                                         JL. HAYAM WURUK NO. 127 RT. 001/006 JAKARTA BARAT</p>
                                 </td>
@@ -59,16 +60,6 @@
                                     </table>
                                 </td>
                                 <td style="width: 50%;">
-                                    <table style="width: 100%; margin-top: -35px;">
-                                        <tbody>
-                                            <tr>
-                                                <td style="width: 28.9268%;">Tanggal</td>
-                                                <td style="width: 2.6178%;">:</td>
-                                                <td style="width: 38.3458%;"><span
-                                                        t-esc="o.invoice_date.strftime('%d %B %Y')" /></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
                                     <strong><span t-field='o.partner_id.name' /></strong>
                                     <p><span t-field='o.partner_id.street' /></p>
                                 </td>
@@ -96,19 +87,19 @@
                                 <td style="width: 6.08276%; height: 18px;text-align: center;">
                                     <span t-esc='no' />
                                 </td>
-                                <td style="width: 27.2506%; height: 18px;text-align: center;">
+                                <td style="width: 27.2506%; height: 18px;text-align: left;">
                                     <span t-field='l.product_id.name' />
                                 </td>
-                                <td style="width: 16.6667%; height: 18px;text-align: center;">
+                                <td style="width: 16.6667%; height: 18px;text-align: left;">
                                     <span t-field='l.quantity' />
                                 </td>
-                                <td style="width: 16.6667%; height: 18px;text-align: center;">
+                                <td style="width: 16.6667%; height: 18px;text-align: right;">
                                     <span t-field='l.price_unit' />
                                 </td>
-                                <td style="width: 16.6667%; height: 18px;text-align: center;">
+                                <td style="width: 16.6667%; height: 18px;text-align: right;">
                                     0
                                 </td>
-                                <td style="width: 16.6667%; height: 18px;text-align: center;">
+                                <td style="width: 16.6667%; height: 18px;text-align: right;">
                                     <span t-field='l.price_subtotal' />
                                 </td>
                                 <t t-set='no' t-value='no+1' />
@@ -126,9 +117,24 @@
                                     <br />
                                     <strong>Catatan :</strong>
                                     <br />
-                                    BANK: <span t-field='o.payment_journal_id.bank_id.name'/>
+                                    BANK: <span t-field='o.payment_journal_id.bank_id.name' />
                                     <br />
-                                    <span t-field='o.payment_journal_id.bank_account_id.acc_number'/> (Rp) A.N : <span t-field='o.payment_journal_id.bank_account_id.acc_holder_name'/>
+                                    <span t-field='o.payment_journal_id.bank_account_id.acc_number' /> (Rp) A.N : <span
+                                        t-field='o.payment_journal_id.bank_account_id.acc_holder_name' />
+                                    <br />
+                                    <t t-if="o.ppn_msg">
+                                        <table
+                                            style="margin-top: 20px; border-collapse: collapse; width: 60%;"
+                                            border="1">
+                                            <tbody>
+                                                <tr style="height: 60px;">
+                                                    <td style="width: 100%; text-align: center; height: 60px;">
+                                                        <span t-field='o.ppn_msg'/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </t>
                                 </td>
                                 <td style="width: 30%;">
                                     <table style="table">
@@ -136,7 +142,8 @@
                                             <tr>
                                                 <td style="width: 45.3771%;">Subtotal</td>
                                                 <td style="width: 3.04128%;">:</td>
-                                                <td style="width: 51.5815%;"><span t-field='o.amount_untaxed' /></td>
+                                                <td style="width: 51.5815%; text-align: right;"><span
+                                                        t-field='o.amount_untaxed' /></td>
 
                                             </tr>
                                             <tr>
@@ -147,12 +154,14 @@
                                             <tr>
                                                 <td style="width: 45.3771%;">DPP</td>
                                                 <td style="width: 3.04128%;">:</td>
-                                                <td style="width: 51.5815%;"><span t-field='o.amount_untaxed' /></td>
+                                                <td style="width: 51.5815%; text-align: right;"><span
+                                                        t-field='o.amount_untaxed' /></td>
                                             </tr>
                                             <tr>
                                                 <td style="width: 45.3771%;">PPN</td>
                                                 <td style="width: 3.04128%;">:</td>
-                                                <td style="width: 51.5815%;"><span t-field='o.amount_tax' /></td>
+                                                <td style="width: 51.5815%; text-align: right;"><span
+                                                        t-field='o.amount_tax' /></td>
                                             </tr>
                                             <tr>
                                                 <td colspan='3'>
@@ -162,7 +171,8 @@
                                             <tr>
                                                 <td style="width: 45.3771%;">Grand Total</td>
                                                 <td style="width: 3.04128%;">:</td>
-                                                <td style="width: 51.5815%;"><span t-field='o.amount_total' /></td>
+                                                <td style="width: 51.5815%; text-align: right;"><span
+                                                        t-field='o.amount_total' /></td>
                                             </tr>
                                         </tbody>
                                     </table>
