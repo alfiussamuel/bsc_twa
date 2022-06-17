@@ -11,7 +11,13 @@
                     <field name="brand_product"/>
                 </xpath>
                 <xpath expr="//field[@name='company_id']" position="before">
-                    <field name="margin"/>
+                    <field name="margin" groups="purchase.group_purchase_manager"/>
+                </xpath>
+                <xpath expr="//field[@name='standard_price']" position="attributes">
+                    <attribute name="groups" >purchase.group_purchase_manager</attribute>
+                </xpath>
+                <xpath expr="//label[@for='standard_price']" position="attributes">
+                    <attribute name="groups" >purchase.group_purchase_manager</attribute>
                 </xpath>
             </field>
         </record>
