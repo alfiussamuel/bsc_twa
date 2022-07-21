@@ -9,7 +9,10 @@ class StockLandedCost(models.Model):
     avg_landed_cost_lines = fields.One2many('average.landed.cost.lines',
                                             'line_id', string='Order Lines')
 
+<<<<<<< HEAD
     @api.multi
+=======
+>>>>>>> 242298feae1538ae73031c668b17a52e363f3d5c
     def compute_average_landed_cost(self):
         AverageLandedCostLines = self.env['average.landed.cost.lines']
         AverageLandedCostLines.search([('line_id', 'in', self.ids)]).unlink()
