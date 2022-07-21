@@ -271,8 +271,8 @@
                 <field name="active"/>
             </xpath>
             <xpath expr="//form/sheet/group/group/field[@name='car_value']" position="after">
-                <field name="income_acc_id" string="Income Account" required="1"/>
-                <field name="expence_acc_id" string="Expense Account" required="1" />
+                <field name="income_acc_id" string="Income Account"/>
+                <field name="expence_acc_id" string="Expense Account"/>
             </xpath>
             <xpath expr="//sheet/div[hasclass('oe_title')]" position="replace" />
             <xpath expr="//field[@name='acquisition_date']" position="attributes">
@@ -394,6 +394,54 @@
                              </group>
                          </group>
                     </page>
+                    <page string="BASTK">
+                        <group>
+                            <field name="check_ids" nolabel="1">
+                                <tree>
+                                    <field name="operation_type_id"/>
+                                    <field name="tanggal_serah_terima"/>
+                                    <field name="kode_ban_kanan_depan"/>
+                                    <field name="kode_ban_kanan_belakang"/>
+                                    <field name="kode_ban_kiri_depan"/>
+                                    <field name="kode_ban_kiri_belakang"/>
+                                    <field name="kode_ban_serep"/>
+                                    <field name="kode_accu"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group string="Information">
+                                            <field name="user_id" readonly="1"/>
+                                            <field name="tanggal_serah_terima" required="1"/>
+                                            <field name="operation_type_id" required="1"/>
+                                            <field name="kode_accu"/>
+                                        </group>
+                                        <group string="Kode Ban">
+                                            <field name="kode_ban_kanan_depan"/>
+                                            <field name="kode_ban_kanan_belakang"/>
+                                            <field name="kode_ban_kiri_depan"/>
+                                            <field name="kode_ban_kiri_belakang"/>
+                                            <field name="kode_ban_serep"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <notebook>
+                                            <page string="Checklist">
+                                                <field name="line_ids" nolabel="1">
+                                                    <tree editable="top">
+                                                        <field name="component_id"/>
+                                                        <field name="is_checked_b"/>
+                                                        <field name="is_checked_r"/>
+                                                        <field name="is_checked_h"/>
+                                                        <field name="is_checked_t"/>
+                                                    </tree>
+                                                </field>
+                                            </page>
+                                        </notebook>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                    </page>
                     <page string="Features">
                         <group string="">
                             <group string="Tire Detail">
@@ -450,7 +498,7 @@
                     <page string="Fluids">
                         <group>
                             <group colspan="2" col="4" string="Fuel">
-                                <field name="fuel_type" required="1"
+                                <field name="fuel_type"
                                     attrs="{'readonly':[('state','in',('write-off'))]}"/>
                                 <field name="fuel_qty"
                                     attrs="{'readonly':[('state','in',('write-off'))]}"/>

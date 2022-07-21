@@ -12,14 +12,11 @@ _logger = logging.getLogger(__name__)
 
 
 class ProductProduct(models.Model):
-    """product model."""
-
     _inherit = 'product.product'
 
     in_active_part = fields.Boolean('In-Active Part?')
     vehicle_make_id = fields.Many2one('fleet.vehicle.model.brand',
                                       string='Vehicle Make')
-
 
 class FleetOperations(models.Model):
     """Fleet Operations model."""

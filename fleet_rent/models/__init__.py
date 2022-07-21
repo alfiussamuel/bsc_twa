@@ -5,3 +5,4 @@ from . import fleet_rent_account
 from . import fleet_res_partner
 from . import fleet_rent
 from . import fleet
+from . import purchase

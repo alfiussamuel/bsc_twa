@@ -6,7 +6,7 @@
     'author': 'BSC',
 
     # any module necessary for this one to work correctly
-    'depends': ['stock_landed_costs','product'],
+    'depends': ['stock_landed_costs','product','purchase'],
 
     # always loaded
     'data': [

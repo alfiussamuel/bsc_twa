@@ -23,9 +23,9 @@
     'data': [
             'security/rent_security.xml',
             'security/ir.model.access.csv',
-            'data/rent_sequence.xml',
-            'data/fleet_rent_data.xml',
-            'data/rent_done_scheduler.xml',
+            # 'data/rent_sequence.xml',
+            # 'data/fleet_rent_data.xml',
+            # 'data/rent_done_scheduler.xml',
             'views/fleet_rent_invoice_view.xml',
             'views/fleet_rent_view.xml',
             'views/fleet_res_partner_view.xml',
@@ -37,6 +37,7 @@
             'wizard/renew_tenancy_view.xml',
             'wizard/rent_close_reason_view.xml',
             'report/fleet_rent.xml',
+            'views/purchase_view.xml'
     ],
     # Technical
     'auto_install': False,

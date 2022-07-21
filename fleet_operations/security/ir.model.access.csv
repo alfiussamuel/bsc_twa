@@ -97,3 +97,12 @@ access_stock_picking_xls_report,access_stock_picking_xls_report,model_stock_pick
 access_excel_fleet_report,access_excel_fleet_report,model_excel_fleet_report,base.group_user,1,1,1,1
 access_print_fleet_history,access_print_fleet_history,model_print_fleet_history,base.group_user,1,1,1,1
 access_work_order_reports,access_work_order_reports,model_work_order_reports,base.group_user,1,1,1,1
+access_driver_request,access_driver_request,model_driver_request,base.group_user,1,1,1,1
+access_driver_job,access_driver_job,model_driver_job,base.group_user,1,1,1,1
+access_vehicle_gate_pass,access_vehicle_gate_pass,model_vehicle_gate_pass,base.group_user,1,1,1,1
+access_vehicle_component,access_vehicle_component,model_vehicle_component,base.group_user,1,1,1,1
+access_vehicle_check,access_vehicle_check,model_vehicle_check,base.group_user,1,1,1,1
+access_vehicle_check_line,access_vehicle_check_line,model_vehicle_check_line,base.group_user,1,1,1,1
+access_vehicle_operation_type,access_vehicle_operation_type,model_vehicle_operation_type,base.group_user,1,1,1,1
+access_vehicle_stnk,access_vehicle_stnk,model_vehicle_stnk,base.group_user,1,1,1,1
+access_vehicle_stnk_type,access_vehicle_stnk_type,model_vehicle_stnk_type,base.group_user,1,1,1,1

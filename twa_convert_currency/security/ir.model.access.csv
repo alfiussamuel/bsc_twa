@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_twa_convert_currency_twa_convert_currency,twa_convert_currency.twa_convert_currency,model_twa_convert_currency_twa_convert_currency,base.group_user,1,1,1,1

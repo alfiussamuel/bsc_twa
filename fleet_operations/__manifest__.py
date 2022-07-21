@@ -18,13 +18,13 @@
     'author': 'Serpent Consulting Services Pvt. Ltd.',
     'website': 'http://www.serpentcs.com',
     # Dependencies
-    'depends': ['fleet', 'stock', 'account'],
+    'depends': ['fleet', 'stock', 'account','sale'],
     # Data
     'data': [
         'security/fleet_security.xml',
         'security/ir.model.access.csv',
-        'data/fleet_extended_data.xml',
-        'data/vechical_sequence.xml',
+        # 'data/fleet_extended_data.xml',
+        # 'data/vechical_sequence.xml',
         'wizard/pending_repair_confirm_view.xml',
         'wizard/continue_pending_repair_view.xml',
         'wizard/update_history_view.xml',

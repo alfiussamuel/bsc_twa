@@ -541,6 +541,7 @@ class FleetVehicleLogServices(models.Model):
                     raise ValidationError('Estimated Date Should Be '
                                           'Greater Than Issue Date.')
 
+    mechanic_id = fields.Many2one('res.partner', 'Mechanic')
     wono_id = fields.Integer(string='WONo',
                              help="Take this field for data migration")
     id = fields.Integer(string='ID')
@@ -554,6 +555,7 @@ class FleetVehicleLogServices(models.Model):
     priority = fields.Selection([('normal', 'NORMAL'), ('high', 'HIGH'),
                                  ('low', 'LOW')], default='normal',
                                 string='Work Priority')
+    date_start = fields.Date(string='Estimated Start')
     date_complete = fields.Date(string='Issued Complete ',
                                 help='Date when the service is completed')
     date_open = fields.Date(string='Open Date',
@@ -622,6 +624,8 @@ class FleetVehicleLogServices(models.Model):
                             string='Last Odometer',
                             help='Odometer measure of the vehicle at the \
                                 moment of this log')
+    invoice_amount = fields.Float(
+        compute="_compute_total_service_amount", string="Total Service Amount")
     service_amount = fields.Float(
         compute="_compute_total_service_amount", string="Total Service Amount")
     source_service_id = fields.Many2one(
@@ -1243,6 +1247,9 @@ class ServiceRepairLine(models.Model):
                                 string="Complete Date")
     target_date = fields.Date(string='Target Completion')
     complete = fields.Boolean(string='Completed')
+    is_cat = fields.Boolean('Cat/Ketok')
+    is_poles = fields.Boolean('Poles')
+    is_ganti = fields.Boolean('Ganti')
 
 
 class FleetServiceType(models.Model):

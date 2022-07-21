@@ -74,9 +74,9 @@
                     </h1>
                 </div>
             </xpath>
-            <xpath expr="//sheet/group[1]" position="attributes">
+            <!-- <xpath expr="//sheet/group[1]" position="attributes">
               <attribute name="string">Services Details</attribute>
-            </xpath>
+            </xpath> -->
             <xpath expr="//field[@name='vehicle_id']" position="replace"/>
 
             <xpath expr="//field[@name='odometer']" position="attributes">
@@ -88,30 +88,35 @@
                 <attribute name="required">1</attribute>
             </xpath>
             <xpath expr="//field[@name='purchaser_id']" position="replace"/>
+            <!-- <xpath expr="//field[@name='vehicle_type_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='vechical_location_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='purchaser_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath> -->
             <xpath expr="//field[@name='service_type_id']" position="replace">
-                <field name="vehicle_id" readonly="True" string="Identification" widget="selection"/>
+                <field name="service_type_id" string="Service Type"
+                    options="{'no_open': True, 'create': false, 'create_edit': false}"
+                    attrs="{'readonly':[('state','=','done')]}"/>
+                <field name="vehicle_id" string="Identification" 
+                    widget="selection"/>
+                <field name="mechanic_id"/>
                 <field name="fmp_id" readonly="True"/>
                 <field name="f_brand_id" readonly="True"
                     options="{'no_open': True, 'create': false, 'create_edit': false}"/>
-                <field name="vechical_location_id" string="Registration State"
-                  readonly="True" options="{'no_open': True, 'create': false, 'create_edit': false}"/>
-                <field name="vechical_type_id" readonly="True"
-                    options="{'no_open': True, 'create': false, 'create_edit': false}"/>
-                <field name="purchaser_id" string="Driver" readonly="1"
-                    attrs="{'readonly':[('state','=','done')]}"/>
-                <field name="service_type_id" string="Service Type"
-                    options="{'no_open': True, 'create': false, 'create_edit': false}"
-                    attrs="{'readonly':[('state','=','done')],'required':[('state','in',('confirm'))]}"/>
             </xpath>
             <xpath expr="//sheet/group/group[2]" position="replace">
-              <group string="Odometer Details">
-                <label for="odometer"/>
+              <group>
+                <label for="odometer" string="Last Km"/>
                 <div class="o_row">
                     <field name="odometer"/>
-                    <field name="odometer_unit"/>
+                    <!-- <field name="odometer_unit"/> -->
                 </div>
-                <field name="next_service_odometer" class="oe_inline" string="Next Service Odometer"/>
-                <field name="next_service_date" readonly="True" attrs="{'readonly':[('state','=','done')]}"/>
+                <field name="next_service_odometer" class="oe_inline" string="Next Service Km"/>
+                <field name="next_service_date" attrs="{'readonly':[('state','=','done')]}"/>
                 <field name="deposit_receive"/> 
                 <field name="amount_receive" invisible="1"/>
                 <field name="amount_return" invisible="1"/>
@@ -134,19 +139,35 @@
                 <group col="2">
                     <group string="Additional Details">
                             <field name="date" string="Service Report On" readonly="1" />
-                            <field name="date_open" readonly="True" string="Service Start Date" />
-                            <field name="date_close" readonly="True" string="Service Close Date"/>
-                            <field name="closed_by" readonly="True" options="{'no_open': True, 'create': false, 'create_edit': false}" can_create="true" can_write="true"/>
-                            <field name="inv_ref"/>
+                            <field name="date_start" required="1" 
+                                attrs="{'invisible':[('etic','=',False)], 'readonly': [('state','=','done')]}" 
+                                string="Estimated Start" on_change="1" />
+                            <field name="date_complete" required="1" 
+                                attrs="{'invisible':[('etic','=',False)], 'readonly': [('state','=','done')]}" 
+                                string="Estimated Finish" on_change="1" />
+                            <field name="date_open" readonly="True" 
+                                string="Service Start Date" />
+                            <field name="date_close" readonly="True" 
+                                string="Service Close Date"/>
+                            <field name="closed_by" readonly="True" 
+                                options="{'no_open': True, 'create': false, 'create_edit': false}" can_create="true" can_write="true"/>
                     </group>
                     <group string="Service Order Details">
-                            <field name="priority" required="1" string="Service Priority" attrs="{'readonly':[('state','in',('draft','done'))]}"/>
-                            <field name="etic" invisible="1" attrs="{'readonly':[('state','in',('draft','done'))]}"/>
-                            <field name="date_complete" required="1" attrs="{'invisible':[('etic','=',False)], 'readonly': [('state','=','done')]}" string="Estimated Date" on_change="1" />
-                            <field name="warehouse_id" attrs="{'readonly':[('state','in',('draft','done'))]}" invisible="1" can_create="true" can_write="true"/>
-                            <field name="delivery_id" invisible="1" can_create="true" can_write="true"/>
-                            <field name="is_parts" invisible="1"/>
-                            <field name="team_id" string="Work Shop" attrs="{'readonly':['|',('state','in',('draft','done')),('is_parts','=',True)],'required':[('state','in',('confirm'))]}" context="{'wo':True,'default_is_company':True}" domain="[('is_company','=',True)]" can_create="true" can_write="true"/>
+                        <field name="priority" required="1" string="Service Priority" 
+                            attrs="{'readonly':[('state','in',('draft','done'))]}"/>
+                        <field name="etic" invisible="1" 
+                            attrs="{'readonly':[('state','in',('draft','done'))]}"/>
+                        <field name="warehouse_id" 
+                            attrs="{'readonly':[('state','in',('done'))]}" invisible="1" can_create="true" can_write="true"/>
+                        <field name="inv_ref"/>
+                        <field name="delivery_id" invisible="1" 
+                            can_create="true" can_write="true"/>
+                        <field name="is_parts" invisible="1"/>
+                        <field name="team_id" string="Work Shop" 
+                            attrs="{'readonly':[('state','in',('done'))]}" 
+                            context="{'wo':True,'default_is_company':True}" 
+                            domain="[('is_company','=',True)]" 
+                            can_create="true" can_write="true"/>
                     </group>
                 </group>
             </xpath>
@@ -154,15 +175,18 @@
                  <notebook>
                  <page string="Repairs" >
                      <field name="repair_line_ids"
-                         attrs="{'readonly':[('state','in',('draft','done'))]}"
+                         attrs="{'readonly':[('state','in',('done'))]}"
                          context="{'default_issue_date':date}"
                          mode="tree,form">
-                         <tree>
+                         <tree editable="bottom">
                              <field name="repair_type_id" required="1"/>
                              <field name="categ_id" invisible="1"
                                  options="{'no_open': True, 'create': false, 'create_edit': false}" />
                              <field name="issue_date" invisible="1"/>
                              <field name="date_complete" invisible="1"/>
+                             <field name="is_cat"/>
+                             <field name="is_poles"/>
+                             <field name="is_ganti"/>
                              <field name="target_date"/>
                              <field name="complete"/>
                          </tree>
@@ -229,7 +253,7 @@
                  </page>
                  <page string="Attachments">
                      <field name="wrk_attach_ids"
-                         attrs="{'readonly':[('state','in',('draft','done'))]}" >
+                         attrs="{'readonly':[('state','in',('done'))]}" >
                          <tree>
                              <field name='name' />
                              <field name='datas' />
@@ -243,7 +267,7 @@
                      </field>
                  </page>
                  <page string="Notes">
-                     <field name="note" attrs="{'readonly':[('state','in',('draft','done'))]}"
+                     <field name="note" attrs="{'readonly':[('state','in',('done'))]}"
                          nolabel="1" placeholder="Put an internal note..." />
                      <field name="already_closed" invisible="1"/>
                  </page>
@@ -361,6 +385,23 @@
         </field>
     </record>
 
+    <!-- Work Order Search Action. -->
+    <record model='ir.actions.act_window' id='fleet_vehicle_log_services_body_repair_action'>
+        <field name="name">Services (Body Repair)</field>
+        <field name="res_model">fleet.vehicle.log.services</field>
+        <field name="view_mode">tree,form,graph</field>
+        <!-- <field name="context">{"search_default_groupby_vehicle" : False}</field> -->
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to create a new service entry.
+          </p><p>
+            OpenERP helps you keeping track of all the services done
+            on your vehicle.Services can be of many type: occasional
+            repair, fixed maintenance, etc.
+          </p>
+        </field>
+    </record>
+
     <record id="fleet_vehicle_log_services_form_action" model="ir.actions.act_window">
         <field name="name">Services</field>
         <field name="res_model">fleet.vehicle.log.services</field>
@@ -370,10 +411,20 @@
 
 
     <!-- Work Order Menu. -->
-    <menuitem action="fleet.fleet_vehicle_log_services_action"
-        parent="fleet.fleet_vehicles" id="fleet.fleet_vehicle_log_services_menu"
-        sequence="5" groups="fleet.fleet_group_user" 
-        name="Vehicle Services"/>
+    <menuitem id="fleet_services_menu"
+        parent="fleet.menu_root" 
+        sequence="2" groups="fleet.fleet_group_user" 
+        name="Services"/>
+
+        <menuitem action="fleet.fleet_vehicle_log_services_action"
+            parent="fleet_services_menu" id="fleet.fleet_vehicle_log_services_menu"
+            sequence="0" groups="fleet.fleet_group_user" 
+            name="GS Services"/>
+
+        <menuitem action="fleet_vehicle_log_services_body_repair_action"
+            parent="fleet_services_menu" id="fleet_services_body_repair_menu"
+            sequence="1" groups="fleet.fleet_group_user" 
+            name="Body Repair Services"/>
 
     <!-- Vehicle Work order advance search view -->
     <record model='ir.ui.view' id='fleet_work_order_advance_search_form_view'>
