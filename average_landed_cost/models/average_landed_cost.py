@@ -12,7 +12,7 @@ class StockLandedCost(models.Model):
     def compute_average_landed_cost(self):
         AverageLandedCostLines = self.env['average.landed.cost.lines']
         AverageLandedCostLines.search([('line_id', 'in', self.ids)]).unlink()
-        for line in self.valuattion_adjustment_lines:
+        for line in self.valuation_adjustment_lines:
             data = self.avg_landed_cost_lines.filtered(lambda t: t.line_id.id == line.cost_id.id)
             if not data:
                 self.avg_landed_cost_lines.create({
