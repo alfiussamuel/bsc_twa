@@ -2,12 +2,17 @@
 
 from odoo import api, fields, models
 
-
 class StockLandedCost(models.Model):
     _inherit = 'stock.landed.cost'
 
     avg_landed_cost_lines = fields.One2many('average.landed.cost.lines',
                                             'line_id', string='Order Lines')
+
+    def button_validate(self):
+        res = super(StockLandedCost, self).button_validate()
+        for line in self.avg_landed_cost_lines:
+            line.product_id.standard_price += line.average_landed_cost
+        return res
 
     def compute_average_landed_cost(self):
         AverageLandedCostLines = self.env['average.landed.cost.lines']
