@@ -11,7 +11,21 @@ class StockLandedCost(models.Model):
     def button_validate(self):
         res = super(StockLandedCost, self).button_validate()
         for line in self.avg_landed_cost_lines:
-            line.product_id.standard_price += line.average_landed_cost
+            has_val = False
+            moves = self.picking_ids.mapped('move_ids_without_package')
+            fifo = self.env['stock.valuation.layer'].search([('product_id','=',line.product_id.id), ('remaining_qty','>',0)], order='create_date asc', limit=1)
+            for move in moves:
+                for val in move.stock_valuation_layer_ids.filtered(lambda x: x.product_id.id == line.product_id.id and x.remaining_qty > 0):
+                    has_val = True
+                    values = val.unit_cost + line.average_landed_cost
+                    val.unit_cost = values
+                    val.value = values * val.quantity
+                    if val.id == fifo.id:
+                        line.product_id.standard_price = values
+
+            if has_val:
+                self.sudo().stock_valuation_layer_ids.unlink()
+            # line.product_id.standard_price += line.average_landed_cost
         return res
 
     def compute_average_landed_cost(self):
