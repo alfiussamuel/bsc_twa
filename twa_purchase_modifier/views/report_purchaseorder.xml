@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_purchaseorder_document_inherit" inherit_id="purchase.report_purchaseorder_document">
+
+        <xpath expr="//t[@t-set='address']" position="replace">
+            <t t-set="address">
+                <p class="mb-0" t-field="o.user_id"/>
+                <div class="mt-0" t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True, "phone_icons": True}'/>
+                <p t-if="o.partner_id.vat">
+                    <t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>:<span t-field="o.partner_id.vat"/>
+                </p>
+            </t>
+        </xpath>
+
+        <!-- Remove Default Purchase Representative -->
+        <xpath expr="//div[@t-if='o.user_id']" position="replace"/>
+
+        <!-- Remove Default Date Req. -->
+        <xpath expr="//th[@name='th_date_req']" position="replace"/>
+        <xpath expr="//td[span[@t-field='line.date_planned']]" position="replace"/>
+
+        <xpath expr="//div[hasclass('page')]/h2[1]/span[@t-field='o.name']" position="replace">
+            <span t-field="o.partner_ref"/>
+        </xpath>
+        <xpath expr="//div[hasclass('page')]/h2[2]/span[@t-field='o.name']" position="replace">
+            <span t-field="o.partner_ref"/>
+        </xpath>
+        <xpath expr="//div[hasclass('page')]/h2[3]/span[@t-field='o.name']" position="replace">
+            <span t-field="o.partner_ref"/>
+        </xpath>
+        <xpath expr="//div[hasclass('page')]/h2[4]/span[@t-field='o.name']" position="replace">
+            <span t-field="o.partner_ref"/>
+        </xpath>
+
+        <!-- Add Amount To Text -->
+        <xpath expr="//div[@id='total']" position="after">
+            <div style="display: inline-block">
+                <div id="amount_text_en" class="row">
+                    <div class="col-3">
+                        <span>Say</span>
+                    </div>
+                    <div class="col-9">
+                        <span>:</span>
+                        <span t-esc="o.num2word_po(o.amount_total, 'en')"/>
+                    </div>
+                </div>
+                <hr color="#4A7EBB" size="2" class="my-0"/>
+                <div id="amount_text_id" class="row">
+                    <div class="col-3">
+                        <span>Terbilang</span>
+                    </div>
+                    <div class="col-9">
+                        <span>:</span>
+                        <span t-esc="o.num2word_po(o.amount_total, 'id')"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//p[@t-field='o.notes']" position="replace">
+            <div id="notes" class="row mt-2">
+                <div class="col-8">
+                    <span style="font-weight: bold; font-style: italic; text-decoration-line: underline;">Commercial Condition</span>
+                    <ul>
+                        <t t-foreach="o.notes.split('\n')" t-as="note">
+                            <li>
+                                <t t-esc="note"/>
+                            </li>
+                        </t>
+                    </ul>
+                </div>
+                <div class="col-2"></div>
+                <div class="col-2 text-center">
+                    <span>Prepared By,</span>
+                    <hr style="margin-top: 9em"/>
+                    <span t-field="o.user_id"/>
+                </div>
+            </div>
+        </xpath>
+
+    </template>
+</odoo>

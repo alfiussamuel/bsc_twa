@@ -11,12 +11,13 @@
 
     'author': "PT. BSC Indonesia",
     'website': "http://www.bsc.co.id",
-    'category': 'Uncategorized',
+    'category': 'Inventory',
     'version': '0.1',
-    'depends': ['base', 'purchase'],
+    'depends': ['base', 'purchase', 'purchase_stock', 'purchase_discount'],
     'data': [
         # 'security/ir.model.access.csv',
         'views/purchase_order.xml',
         'views/sequence.xml',
+        'views/report_purchaseorder.xml',
     ],
 }
