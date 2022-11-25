@@ -4,7 +4,9 @@
 
         <xpath expr="//t[@t-set='address']" position="replace">
             <t t-set="address">
-                <p class="mb-0" t-field="o.user_id"/>
+                <p t-if="o.user_id" class="mb-0">
+                    <span t-field="o.user_id"/>
+                </p>
                 <div class="mt-0" t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True, "phone_icons": True}'/>
                 <p t-if="o.partner_id.vat">
                     <t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>:<span t-field="o.partner_id.vat"/>
@@ -61,7 +63,7 @@
             <div id="notes" class="row mt-2">
                 <div class="col-8">
                     <span style="font-weight: bold; font-style: italic; text-decoration-line: underline;">Commercial Condition</span>
-                    <ul>
+                    <ul t-if="o.notes">
                         <t t-foreach="o.notes.split('\n')" t-as="note">
                             <li>
                                 <t t-esc="note"/>
@@ -73,7 +75,9 @@
                 <div class="col-2 text-center">
                     <span>Prepared By,</span>
                     <hr style="margin-top: 9em"/>
-                    <span t-field="o.user_id"/>
+                    <p t-if="o.user_id">
+                        <span t-field="o.user_id"/>
+                    </p>
                 </div>
             </div>
         </xpath>
