@@ -35,10 +35,22 @@
         </xpath>
 
         <!-- Add Amount To Text -->
+        <xpath expr="//div[@id='informations']" position="replace">
+            <div id="informations" class="row mt32 mb32">
+                <div t-if="o.user_id" class="col-3 bm-2">
+                    <strong>Purchase Representative:</strong>
+                    <p t-field="o.user_id" class="m-0"/>
+                </div>
+                <div t-if="o.date_order" class="col-3 bm-2">
+                    <strong>Order Date:</strong>
+                    <p t-field="o.date_order" class="m-0"/>
+                </div>
+            </div>
+        </xpath>
         <xpath expr="//div[@id='total']" position="after">
-            <div style="display: inline-block">
+            <div style="display: inline-block; font-size: 15px;">
                 <div id="amount_text_en" class="row">
-                    <div class="col-3">
+                    <div class="col-3" >
                         <span>Say</span>
                     </div>
                     <div class="col-9">
@@ -74,7 +86,7 @@
                 <div class="col-2"></div>
                 <div class="col-2 text-center">
                     <span>Prepared By,</span>
-                    <hr style="margin-top: 9em"/>
+                    <hr style="margin-top: 7em"/>
                     <p t-if="o.user_id">
                         <span t-field="o.user_id"/>
                     </p>

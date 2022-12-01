@@ -20,7 +20,7 @@ class PurchaseOrder(models.Model):
     def num2word_po(self, amount_total, lang):
         words = num2words(round(amount_total), lang=lang).title()
         number_to_words = words.split('Koma',1)[0]
-        res = number_to_words + " " + " Rupiah"
+        res = number_to_words + " " + " %s" % (self.currency_id.currency_unit_label)
         return res
 
     # def write(self, vals):
