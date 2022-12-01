@@ -48,7 +48,7 @@
             </div>
         </xpath>
         <xpath expr="//div[@id='total']" position="after">
-            <div style="width: 20em">
+            <div style="width: 28em">
                 <div id="amount_text_en" class="row">
                     <div class="col-3" style="font-size: 0.8em;">
                         <span>Say</span>
