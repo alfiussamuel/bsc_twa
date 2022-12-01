@@ -50,20 +50,20 @@
         <xpath expr="//div[@id='total']" position="after">
             <div style="width: 20em">
                 <div id="amount_text_en" class="row">
-                    <div class="col-3" style="font-size: 10px;">
+                    <div class="col-3" style="font-size: 0.8em;">
                         <span>Say</span>
                     </div>
-                    <div class="col-9" style="font-size: 10px;">
+                    <div class="col-9" style="font-size: 0.8em;">
                         <span>:</span>
                         <span t-esc="o.num2word_po(o.amount_total, 'en')"/>
                     </div>
                 </div>
                 <hr color="#4A7EBB" size="2" class="my-0"/>
                 <div id="amount_text_id" class="row">
-                    <div class="col-3" style="font-size: 10px;">
+                    <div class="col-3" style="font-size: 0.8em;">
                         <span>Terbilang</span>
                     </div>
-                    <div class="col-9" style="font-size: 10px;">
+                    <div class="col-9" style="font-size: 0.8em;">
                         <span>:</span>
                         <span t-esc="o.num2word_po(o.amount_total, 'id')"/>
                     </div>
